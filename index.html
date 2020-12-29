@@ -7,31 +7,56 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>APIs Code Quiz</title>
     <link rel="stylesheet" href="style.css" />
-</head>
+     <!-- Added link to the jQuery Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+  <!-- Added a link to Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+</head>
+ 
 <body>
 
-    <header>
-        <h2>View Highscores 
+  
+        <div id="nav">
+			<!-- view scores link on the top left of nav bar-->
+			<div class="left">
+                <a onclick="getScore()" href="#"><h4 >View Highscore</h4></a>
+			</div>
+			<!-- countdown timer on the top right of nav bar-->
+			<span class = "time" id= "timer">Time: 0</span>
+                
+			</div>
 
-         <span class = "time">Time: </span>
-         
-        </h2>
 
+   
 
-    </header>
-
-    <section>
-        <div class="container">
+    <section id = 'section'>
+        <div class="container" id='divContainer'>
         <h1>Coding Quiz Challenge</h1>
-        <p class="main">Try to answer the following code related code questions within the time limit. All wrong answers will be
+        <p class="main" id="main">Try to answer the following code related code questions within the time limit. All wrong answers will be
             penalized 10 seconds off the time. </p>
         
-                <button id="quiz" class="btn">Start Quiz</button>
-            
-
+                <button id="quiz" class="btn btn-primary">Start Quiz</button>
         </div>    
     </section>
+
+
+    <div class= "questionContainer" >
+        <h2 id="question"></h2>
+           <div id='divQuizContent'></div>
+    </div>
+
+    <div class = "scoreContainer" >
+        <h3>All Done!</h3>
+        Your Final Score is 
+        <div id = "divScoreContainer"></div>
+        Initials: <input type='text' id='initials'/> 
+        <button onClick='submit()'>Submit</button>
+    </br>
+        <button onClick='goBack()'>Go Back</button>
+        <button onClick='clearHighScore()'>Clear High Score</button>
+    </div>
 
 
 
