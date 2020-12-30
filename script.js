@@ -3,6 +3,7 @@ var score = 0;
 var timeEl = document.querySelector(".time");
 var quizBtn = document.querySelector("#quiz");
 
+
 var allQuestions = [
     {
         question: "What does HTML stand for?" , 
@@ -31,10 +32,10 @@ var allQuestions = [
     }
     
 ];
-function pageLoad()
-{
-    $("#divScoreContainer").hide();
-}
+//function pageLoad()
+//{
+  //  $("#divScoreContainer").hide();
+//}
 
 var mainEl = document.getElementById("main");
 var timer = document.getElementById("timer");
@@ -44,7 +45,7 @@ var i = 0;
 var timeLeft = 75;
 
 var currentQuestion=0;
-
+//Quiz start
 function startQuiz() {
   mainEl.append(bodyEl);
 
@@ -53,7 +54,7 @@ function startQuiz() {
   $("#divScoreContainer").hide();
   $("#divQuizContent").show();
   showQuestion()
-
+//set timer
   var quizInterval = setInterval(function() {
     if (timeLeft === 0) {
       clearInterval(quizInterval);
@@ -66,25 +67,13 @@ function startQuiz() {
   }, 1000);
 };
 
+//function to end timer
 function endgame() {
     clearInterval(timer);
 }
 
 //startQuiz();
-
 quizBtn.addEventListener("click", startQuiz);
-
-//function showQuestion() {
-  //  $("button").click(function() {
-    //    $("div").empty();
-    //});
-    
-    //clear out existing question on page
-    //show the question add htmml element to page
-    //for every answer create a div with a button and answer adding 4 or more elements to page
-    //attach a event listner to all the events similar to quizbtn 
-    
-//}
 
 function showQuestion() {
     //alert("show question");
@@ -97,26 +86,26 @@ function showQuestion() {
     //alert(questionText);
     $("#divQuizContent").html(questionText);
 };
+
 var numCorrect=0;
-function answer(idx)
-{
-    if (idx==allQuestions[currentQuestion].answer)
-    {
-        alert("correct");
+function answer(idx){
+    if (idx==allQuestions[currentQuestion].answer){
         numCorrect++;
+       // .textContect = "Correct!"   //need to add correct and wrong to question
     }else{
         timeLeft -= 10;
-        alert("wrong: "+timeLeft);
+     //   .textContent = "Wrong!"
     }
     allQuestions[currentQuestion].answerGiven = idx;
     currentQuestion++;
-    if (currentQuestion===allQuestions.length)
-    {
+    if (currentQuestion===allQuestions.length){
         endQuiz();
     }else{
         showQuestion();
     }
-}
+};
+
+//end of quiz show final score
 var finalScore = 0;
 function endQuiz()
 {
@@ -126,8 +115,9 @@ function endQuiz()
     $("#finalScore").html ("Score is: "+finalScore);
     $("#section").hide();
     $("#divScoreContainer").show();
-    alert("Score is: "+finalScore);
+    //alert("Score is: "+finalScore);
 }
+// allow user to enter intials to save highscore
 function submit()
 {
     const initials = $("#initials").val();
@@ -139,44 +129,6 @@ function submit()
 
 
 /*
-function loadQuestion (questionIndex) {
-	var q = questions[questionIndex];
-    questionEl.textContent = (questionIndex + 1) + '. ' + q.question;
-    
-    choiceBtn.addEventListener("click", chooseAnswer);
-
-function chooseAnswer() {
-    var selectedChoices = document.querySelector('click');
-        
-        var answer = selectedChoices.value;
-        if(questions[allQuestion].answer === answer){
-           //correct 
-        } 
-        else (questions[allQuestion].answer !== answer); {
-            //wrong and minus 10 second
-        }
-        
-        allQuestion++;
-        if(currentQuestion === allQuestions - 1){
-            nextButton.textContent = 'Finish';
-        }
-        if(currentQuestion === allQuestions){
-            container.style.display = 'none';
-            resultCont.style.display = '';
-            resultCont.textContent = 'Your Score: ' + score;
-            return;
-        }
-        chooseAnswer(currentQuestion);
-    }
-    
-    chooseAnswer(currentQuestion);
-    //get current question
-    //get answer that they selected
-    //figure out if answer is correct
-    //if answer is correct more to next question
-    //if incorrect deduct 10 sec 
-    //after choose answers and out of questions move to high score page
-}
 
 function getScore() {
 
