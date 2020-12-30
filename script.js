@@ -66,14 +66,14 @@ function startQuiz() {
 //function to end timer
 function endgame() {
     clearInterval(timer);
-}
+};
 
 //startQuiz();
 quizBtn.addEventListener("click", startQuiz);
 
 function showQuestion() {
     //alert("show question");
-    const question = allQuestions[currentQuestion];
+    var question = allQuestions[currentQuestion];
     var questionText = "<p>" + question.question + "</p>";
     for (var i in question.choices) {
         questionText += "<button  onClick='answer(" + i + ")'>" + question.choices[i] + "</button><br/>";
@@ -82,14 +82,15 @@ function showQuestion() {
     $("#divQuizContent").html(questionText);
 };
 
+var result = document.getElementById("result");
 var numCorrect = 0;
 function answer(idx) {
     if (idx === allQuestions[currentQuestion].answer) {
         numCorrect++;
-        // .textContect = "Correct!"   //need to add correct and wrong to question
+        result.innerHTML = "Correct!"   //need to clear after end of questions
     } else {
         timeLeft -= 10;
-        //   .textContent = "Wrong!"
+        result.innerHTML = "Wrong!"
     }
     allQuestions[currentQuestion].answerGiven = idx;
     currentQuestion++;
@@ -103,14 +104,16 @@ function answer(idx) {
 //end of quiz show final score
 var finalScore = 0;
 function endQuiz() {
+    $("#answer").empty();
     finalScore = (numCorrect === 0 ? 0 : timeLeft);
     endgame();
     $("#divQuizContent").hide();
     $("#finalScore").html("Score is: " + finalScore);
     $("#section").hide();
     $("#divScoreContainer").show();
-     
-}
+         
+};
+
 // allow user to enter intials to save highscore
 function submit() {
     var initials = $("#initials").val();
@@ -118,7 +121,7 @@ function submit() {
     var obj = { initials: initials, highScore: finalScore };
     localStorage.setItem("highscore", JSON.stringify(obj));
     window.location.replace("highscore.html");
-}
+};
 
 
 /*
