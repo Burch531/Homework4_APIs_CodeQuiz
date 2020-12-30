@@ -81,7 +81,7 @@ function showQuestion() {
     //alert(questionText);
     $("#divQuizContent").html(questionText);
 };
-
+//as questions are asked determines if correct or wrong and infoms user and if wrong deduct time
 var result = document.getElementById("result");
 var numCorrect = 0;
 function answer(idx) {
@@ -112,7 +112,7 @@ function endQuiz() {
          
 };
 
-// allow user to enter intials to save highscore
+// allow user to enter intials to save highscore and go to highscore page
 function submit() {
     var initials = $("#initials").val();
 
