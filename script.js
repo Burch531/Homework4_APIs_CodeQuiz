@@ -3,39 +3,34 @@ var score = 0;
 var timeEl = document.querySelector(".time");
 var quizBtn = document.querySelector("#quiz");
 
-
 var allQuestions = [
     {
-        question: "What does HTML stand for?" , 
+        question: "What does HTML stand for?",
         choices: ["Hometext Markup Language", "Hypertext Markup Language", "Hyperlink Text Markup Language"],
         answer: 1
     },
     {
-        question: "The bootstrap grid system is based on how many columns?" , 
+        question: "The bootstrap grid system is based on how many columns?",
         choices: ["9", "6", "12"],
         answer: 2
     },
     {
-        question: "What does CSS stand for?" , 
+        question: "What does CSS stand for?",
         choices: ["Cascading Style Sheets", "Creative Style Sheets", "Computer Style Sheets"],
         answer: 0
     },
     {
-        question: "How do you create a function in JavaScript" , 
+        question: "How do you create a function in JavaScript",
         choices: ["function = myFunction()", "function: myFunction()", "function myFunction"],
         answer: 1
     },
     {
-        question: "What is the correct way to write an array in JavaScript" , 
+        question: "What is the correct way to write an array in JavaScript",
         choices: ["var num = '1','2','3';", "var num = ['1','2','3']", "var num =('1','2','3')"],
         answer: 1
     }
-    
+
 ];
-//function pageLoad()
-//{
-  //  $("#divScoreContainer").hide();
-//}
 
 var mainEl = document.getElementById("main");
 var timer = document.getElementById("timer");
@@ -44,27 +39,28 @@ var bodyEl = document.createElement("div");
 var i = 0;
 var timeLeft = 75;
 
-var currentQuestion=0;
+var currentQuestion = 0;
 //Quiz start
 function startQuiz() {
-  mainEl.append(bodyEl);
+    mainEl.append(bodyEl);
 
 
-  $("#section").hide();
-  $("#divScoreContainer").hide();
-  $("#divQuizContent").show();
-  showQuestion()
-//set timer
-  var quizInterval = setInterval(function() {
-    if (timeLeft === 0) {
-      clearInterval(quizInterval);
-      endgame(); 
-    } else {
-      timeLeft--;
-      timer.innerHTML = "Time: " + timeLeft;
-    }
+    $("#section").hide();
+    $("#divScoreContainer").hide();
+    $("#divQuizContent").show();
+    showQuestion()
 
-  }, 1000);
+    //set timer
+    var quizInterval = setInterval(function () {
+        if (timeLeft === 0) {
+            clearInterval(quizInterval);
+            endgame();
+        } else {
+            timeLeft--;
+            timer.innerHTML = "Time: " + timeLeft;
+        }
+
+    }, 1000);
 };
 
 //function to end timer
@@ -78,53 +74,50 @@ quizBtn.addEventListener("click", startQuiz);
 function showQuestion() {
     //alert("show question");
     const question = allQuestions[currentQuestion];
-    var questionText = "<p>"+question.question+"</p>";
-    for (var i in question.choices)
-    {
-        questionText+= "<button  onClick='answer("+i+")'>"+question.choices[i]+"</button><br/>";
+    var questionText = "<p>" + question.question + "</p>";
+    for (var i in question.choices) {
+        questionText += "<button  onClick='answer(" + i + ")'>" + question.choices[i] + "</button><br/>";
     }
     //alert(questionText);
     $("#divQuizContent").html(questionText);
 };
 
-var numCorrect=0;
-function answer(idx){
-    if (idx===allQuestions[currentQuestion].answer){
+var numCorrect = 0;
+function answer(idx) {
+    if (idx === allQuestions[currentQuestion].answer) {
         numCorrect++;
-       // .textContect = "Correct!"   //need to add correct and wrong to question
-    }else{
+        // .textContect = "Correct!"   //need to add correct and wrong to question
+    } else {
         timeLeft -= 10;
-     //   .textContent = "Wrong!"
+        //   .textContent = "Wrong!"
     }
     allQuestions[currentQuestion].answerGiven = idx;
     currentQuestion++;
-    if (currentQuestion===allQuestions.length){
+    if (currentQuestion === allQuestions.length) {
         endQuiz();
-    }else{
+    } else {
         showQuestion();
     }
 };
 
 //end of quiz show final score
 var finalScore = 0;
-function endQuiz()
-{
-    finalScore=(numCorrect===0?0:timeLeft);
+function endQuiz() {
+    finalScore = (numCorrect === 0 ? 0 : timeLeft);
     endgame();
     $("#divQuizContent").hide();
-    $("#finalScore").html ("Score is: "+finalScore);
+    $("#finalScore").html("Score is: " + finalScore);
     $("#section").hide();
     $("#divScoreContainer").show();
     //alert("Score is: "+finalScore);
 }
 // allow user to enter intials to save highscore
-function submit()
-{
+function submit() {
     var initials = $("#initials").val();
 
-    var obj = {initials: initials, highScore: finalScore};
+    var obj = { initials: initials, highScore: finalScore };
     localStorage.setItem("highscore", JSON.stringify(obj));
-    window.location.replace ("highscore.html");
+    window.location.replace("highscore.html");
 }
 
 
