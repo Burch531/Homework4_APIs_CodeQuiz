@@ -22,7 +22,7 @@
 <body>
 
 
-    <div id="nav">
+    <nav id="nav">
         <!-- view scores link on the top left of nav bar-->
         <div class="left">
             <a onclick="getScore()" href="highscore.html">
@@ -32,11 +32,9 @@
         <!-- countdown timer on the top right of nav bar-->
         <span class="time" id="timer">Time: 0</span>
 
-    </div>
+    </nav>
 
- 
-
-
+     <!-- start page user will click start button here to start questions and timer-->
     <section id='section'>
         <div class="container" id='divContainer'>
             <h1>Coding Quiz Challenge</h1>
@@ -48,12 +46,13 @@
         </div>
     </section>
 
-
+     <!-- this div will contain all question that user will answer-->
     <div class="questionContainer">
         <h2 id="question"></h2>
         <div id='divQuizContent'></div>
     </div>
 
+    <!-- next page of quiz once questions are complete will appear and allow user to ennter intitials-->
     <div class="scoreContainer" id="divScoreContainer">
         <h3>All Done!</h3>
         <h3 id='finalScore'></h3>

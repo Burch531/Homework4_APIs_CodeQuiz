@@ -89,7 +89,7 @@ function showQuestion() {
 
 var numCorrect=0;
 function answer(idx){
-    if (idx==allQuestions[currentQuestion].answer){
+    if (idx===allQuestions[currentQuestion].answer){
         numCorrect++;
        // .textContect = "Correct!"   //need to add correct and wrong to question
     }else{
@@ -120,9 +120,9 @@ function endQuiz()
 // allow user to enter intials to save highscore
 function submit()
 {
-    const initials = $("#initials").val();
+    var initials = $("#initials").val();
 
-    const obj = {initials: initials, highScore: finalScore};
+    var obj = {initials: initials, highScore: finalScore};
     localStorage.setItem("highscore", JSON.stringify(obj));
     window.location.replace ("highscore.html");
 }

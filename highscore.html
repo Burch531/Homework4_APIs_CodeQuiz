@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            const score = localStorage.getItem("highscore");
+            var score = localStorage.getItem("highscore");
 
             if (score != null && score.charAt(0) == '{') {
                 const data = JSON.parse(score);
