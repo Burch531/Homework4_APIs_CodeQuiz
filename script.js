@@ -40,9 +40,11 @@ var i = 0;
 var timeLeft = 75;
 
 var currentQuestion = 0;
+var quizInterval;
+
 //Quiz start
 function startQuiz() {
-    mainEl.append(bodyEl);
+    // mainEl.append(bodyEl);
 
 
     $("#section").hide();
@@ -51,7 +53,7 @@ function startQuiz() {
     showQuestion()
 
     //set timer
-    var quizInterval = setInterval(function () {
+    quizInterval = setInterval(function () {
         if (timeLeft === 0) {
             clearInterval(quizInterval);
             endgame();
@@ -65,7 +67,7 @@ function startQuiz() {
 
 //function to end timer
 function endgame() {
-    clearInterval(timer);
+    clearInterval(quizInterval);
 };
 
 //startQuiz();
@@ -78,19 +80,21 @@ function showQuestion() {
     for (var i in question.choices) {
         questionText += "<button  onClick='answer(" + i + ")'>" + question.choices[i] + "</button><br/>";
     }
-    //alert(questionText);
+    questionText += "<div id='result'></div>"
+
     $("#divQuizContent").html(questionText);
 };
+
 //as questions are asked determines if correct or wrong and infoms user and if wrong deduct time
-var result = document.getElementById("result");
+
 var numCorrect = 0;
+
 function answer(idx) {
-    if (idx === allQuestions[currentQuestion].answer) {
+    var isCorrect = idx === allQuestions[currentQuestion].answer
+    if (isCorrect) {
         numCorrect++;
-        result.innerHTML = "Correct!"   
     } else {
         timeLeft -= 10;
-        result.innerHTML = "Wrong!"
     }
     allQuestions[currentQuestion].answerGiven = idx;
     currentQuestion++;
@@ -99,20 +103,28 @@ function answer(idx) {
     } else {
         showQuestion();
     }
+    var result = document.getElementById("result");
+    if (isCorrect) {
+        result.innerHTML = "Correct!"
+    } else {
+        result.innerHTML = "Wrong!"
+    }
 };
+
 
 //end of quiz show final score
 var finalScore = 0;
 function endQuiz() {
     finalScore = (numCorrect === 0 ? 0 : timeLeft);
+    endgame();
     $("#divQuizContent").hide();
     $("#finalScore").html("Score is: " + finalScore);
     $("#section").hide();
     $("#divScoreContainer").show();
-         
+
 };
 
-// allow user to enter intials to save highscore and go to highscore page
+// allow user to enter intials to save highscore and go to highscore page 
 function submit() {
     var initials = $("#initials").val();
 

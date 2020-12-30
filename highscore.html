@@ -9,12 +9,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            var score = localStorage.getItem("highscore");
+            var score = [
+                initials = ''
+                highScore = ''
+            ]
+            
+            //localStorage.getItem("highscore");
 
             if (score != null && score.charAt(0) == '{') {
-                const data = JSON.parse(score);
+                var data = JSON.parse(score);
                 $("#initials").val(data.initials);
                 $("#highScore").val(data.highScore);
+
+               
             }
         });
 
