@@ -105,7 +105,6 @@ function answer(idx) {
 var finalScore = 0;
 function endQuiz() {
     finalScore = (numCorrect === 0 ? 0 : timeLeft);
-    endgame();
     $("#divQuizContent").hide();
     $("#finalScore").html("Score is: " + finalScore);
     $("#section").hide();
