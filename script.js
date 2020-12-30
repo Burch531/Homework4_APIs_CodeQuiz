@@ -87,7 +87,7 @@ var numCorrect = 0;
 function answer(idx) {
     if (idx === allQuestions[currentQuestion].answer) {
         numCorrect++;
-        result.innerHTML = "Correct!"   //need to clear after end of questions
+        result.innerHTML = "Correct!"   
     } else {
         timeLeft -= 10;
         result.innerHTML = "Wrong!"
@@ -104,7 +104,6 @@ function answer(idx) {
 //end of quiz show final score
 var finalScore = 0;
 function endQuiz() {
-    $("#answer").empty();
     finalScore = (numCorrect === 0 ? 0 : timeLeft);
     endgame();
     $("#divQuizContent").hide();
