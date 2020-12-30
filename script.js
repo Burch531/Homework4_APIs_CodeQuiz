@@ -109,7 +109,7 @@ function endQuiz() {
     $("#finalScore").html("Score is: " + finalScore);
     $("#section").hide();
     $("#divScoreContainer").show();
-    //alert("Score is: "+finalScore);
+     
 }
 // allow user to enter intials to save highscore
 function submit() {
