@@ -7,3 +7,11 @@ Link to demo video
 Link to github https://github.com/Burch531/Homework4_APIs_CodeQuiz
 
 Link to live site https://burch531.github.io/Homework4_APIs_CodeQuiz/
+
+## Screenshot
+
+![Code_Quiz_Start](./images/quiz1.PNG)
+
+![Code_Quiz_Question](./images/quiz2.PNG)
+
+![Code_Quiz_HighScore](./images/quiz3.PNG)
