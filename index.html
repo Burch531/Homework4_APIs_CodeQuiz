@@ -24,7 +24,7 @@
     <nav id="nav">
         <!-- view scores link on the top left of nav bar-->
         <div class="left">
-            <a onclick="getScore()" href="highscore.html">
+            <a href="highscore.html">
                 <h4>View Highscore</h4>
             </a>
         </div>
@@ -48,10 +48,9 @@
     <div class="questionContainer">
         <h2 id="question"></h2>
         <div id='divQuizContent'>
-            
         </div>
     </div>
-    
+
 
     <!-- next page of quiz once questions are complete will appear and allow user to ennter intitials-->
     <div class="scoreContainer" id="divScoreContainer">
@@ -61,7 +60,7 @@
 
         <div>
             Initials: <input type='text' id='initials' />
-            <button onClick='submit()'>Submit</button>
+            <button id="submit" class="btn btn-primary">Submit</button>
 
         </div>
     </div>

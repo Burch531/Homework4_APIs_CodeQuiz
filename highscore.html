@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8" />
@@ -7,40 +8,21 @@
     <title>APIs Code Quiz</title>
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            var score = [
-                initials = ''
-                highScore = ''
-            ]
-            
-            //localStorage.getItem("highscore");
-
-            if (score != null && score.charAt(0) == '{') {
-                var data = JSON.parse(score);
-                $("#initials").val(data.initials);
-                $("#highScore").val(data.highScore);
-
-               
-            }
-        });
-
-        function clearHighScore() {
-            localStorage.setItem("highscore", 0);
-        }
-    </script>
+  
 </head>
 
 <body>
     <section>
         <h1> High Score</h1>
-
+            <ul id ="listScore"></ul>
         </br>
 
-        Initials: <input id='initials' /> High Score: <input id='highScore' /><br />
+        
         <button onclick="clearHighScore()">Clear High Score</button><button
             onclick="document.location.replace('index.html')">Go Back</button>
     </section>
+
+    <script src="highscore.js"></script>
 </body>
 
 </html>

@@ -44,7 +44,7 @@ var quizInterval;
 
 //Quiz start
 function startQuiz() {
-    // mainEl.append(bodyEl);
+     mainEl.append(bodyEl);
 
 
     $("#section").hide();
@@ -125,18 +125,32 @@ function endQuiz() {
 };
 
 // allow user to enter intials to save highscore and go to highscore page 
-function submit() {
-    var initials = $("#initials").val();
 
-    var obj = { initials: initials, highScore: finalScore };
-    localStorage.setItem("highscore", JSON.stringify(obj));
-    window.location.replace("highscore.html");
-};
+   submit.addEventListener("click",function(){     
+    var initialName = $("#initials").val();
 
+    if (initialName === "") {
+       console.log("It cannot be empty");
+    }
+    else {
+        var user = {
+            initials: initialName ,
+            highScore: finalScore
+        };
 
-/*
-
-function getScore() {
-
-}
-*/
+       
+        var allScores = localStorage.getItem("allScores");
+        if (allScores=== null) {
+            allScores = [];
+        }
+        else {
+            allScores = JSON.parse(allScores);
+        }
+        allScores.push(user);
+        var scoreNew = JSON.stringify(allScores);
+        localStorage.setItem("allScores", scoreNew);
+        //redirecting user to highscore page
+        window.location.replace("./highscore.html");
+        
+    }
+});
